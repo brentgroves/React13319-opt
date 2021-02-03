@@ -3,10 +3,7 @@ import { PublicClientApplication } from "@azure/msal-browser";
 import { msalConfig, loginRequest } from "../config/authConfig";
 
 const msalInstance = new PublicClientApplication(msalConfig);
-// You can't login here...
-// msalInstance.loginRedirect(loginRequest);
 
-// common.log(`process.env.REACT_APP_SET=${process.env.REACT_APP_SET}`);
 
 const initState = {
   msalInstance: msalInstance, 

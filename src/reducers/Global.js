@@ -21,10 +21,8 @@ var lastDayOfQuarter = LastDayQuarter(today);
 common.log(
   `today: ${today},firstDayOfWeek:${firstDayOfWeek},lastDayOfWeek:${lastDayOfWeek},firstDayOfMonth:${firstDayOfMonth},lastDayOfMonth:${lastDayOfMonth}`,
 );
-common.log(`process.env.REACT_APP_SET=${process.env.REACT_APP_SET}`);
 
 const initState = {
-  appSet: process.env.REACT_APP_SET,
   currentApp: 0, // 0 = none,1=OEE,2=CNC
   submitting: false, // Used by forms/dialogs to disable buttons when saga is running.
   firstDayOfWeek,

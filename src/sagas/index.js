@@ -1,11 +1,7 @@
 import { put, takeEvery, all } from 'redux-saga/effects';
 import * as types from '../constants/ActionTypes';
 import { push } from 'connected-react-router';
-import * as users from './Users';
 import * as common from '@bgroves/common';
-
-//var g_services;
-//var g_dispatch;
 
 // will not work?
 /*  put(push(action.route)) Works when called from handleView200206 and others
@@ -28,14 +24,11 @@ export default function* rootSaga() {
     //    handleKep13318(),
     //    handleSignUp(),
     watchPush(),
-    users.watchAuthenticate(),
-    users.watchLogout(),
   ]);
 }
 
 export function setSAGA(services, dispatch) {
   //  g_services = services;
   //  g_dispatch = dispatch;
-  users.setSAGA(services, dispatch);
 }
 

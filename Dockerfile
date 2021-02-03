@@ -36,5 +36,5 @@ RUN npm run build
 EXPOSE 3000 
 
 # I think this cmd gets overriden by the docker compose yaml script.
-CMD dockerize -wait tcp://feat13319:3030 http-server ./build --cors -p 3000
+CMD dockerize -wait tcp://feat13319:3030 npm start
 
