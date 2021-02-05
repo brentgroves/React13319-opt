@@ -58,14 +58,10 @@ const Msal = (state = initState, action) => {
       return Object.assign({}, state, {
         profile: action.profile,
         jobTitle: action.profile.jobTitle,
+        department: action.profile.company.department,
         companyName: action.profile.company.displayName,
         officeLocation: action.profile.company.officeLocation,
-      });
-    }
-    case types.SET_DEPARTMENT: {
-      console.log(`in SetDepartment ${action.department}`);
-      return Object.assign({}, state, {
-        department: action.department,
+
       });
     }
     default:

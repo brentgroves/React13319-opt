@@ -15,6 +15,7 @@ import Typography from "@material-ui/core/Typography";
 import Tooltip from "@material-ui/core/Tooltip";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import OutlinedCard from './OutlinedCard';
+import {AppMenuCard} from '../containers/AppMenuCard';
 
 const HtmlTooltip = withStyles((theme) => ({
   tooltip: {
@@ -29,7 +30,9 @@ const HtmlTooltip = withStyles((theme) => ({
 const StyledMenu = withStyles({
   paper: {
     // border: '1px solid #d3d4d5',
+    border: '0px',
   },
+
 })((props) => (
   <Menu
     elevation={0}
@@ -47,12 +50,18 @@ const StyledMenu = withStyles({
 ));
 
 const StyledMenuItem = withStyles((theme) => ({
+  gutters: {
+    paddingLeft: '0px',
+    paddingRight: '0px'
+  },      
+
   root: {
     "&:focus": {
       backgroundColor: theme.palette.primary.main,
       "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
         color: theme.palette.common.white,
       },
+      paddingTop: '0px',
     },
   },
 }))(MenuItem);
@@ -116,10 +125,10 @@ export default function AppMenu({ msalInstance, name, initials, companyName }) {
         onClose={handleClose}
       >
         <StyledMenuItem>
-          <ListItemIcon>
-          <OutlinedCard/>
+          {/* <ListItemIcon> */}
+          <AppMenuCard/>
 
-          </ListItemIcon>
+          {/* </ListItemIcon> */}
         </StyledMenuItem>
       </StyledMenu>
     </React.Fragment>
