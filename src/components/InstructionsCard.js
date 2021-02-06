@@ -1,16 +1,17 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import LineChartLanding from "./LineChartLanding";
+import Instructions from './Instructions';
 
 
 const useStyles = makeStyles({
   root: {
-    minWidth: 275,
+    minWidth: 200,
   },
   bullet: {
     display: 'inline-block',
@@ -25,14 +26,14 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ChartCard() {
+export default function InstructionsCard() {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
 
   return (
     <Card className={classes.root} variant="outlined">
       <CardContent>
-      <LineChartLanding />
+      <Instructions />
       </CardContent>
     </Card>
   );

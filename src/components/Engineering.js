@@ -12,12 +12,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { deepOrange, deepPurple } from '@material-ui/core/colors';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import OutlinedCard from './OutlinedCard';
 import clsx from 'clsx';
 import { SideMenu } from '../containers/SideMenu';
-import { Landing } from '../containers/Landing';
-import { ToolbarAvatar } from '../containers/ToolbarAvatar';
+import { Dashboard } from '../containers/Dashboard';
 import { AppMenu } from '../containers/AppMenu';
 import LinearIndeterminate from './LinearIndeterminate';
 
@@ -169,7 +166,6 @@ export default function Engineering({ AuthenticateSaga }) {
               Tooling Tracker
             </Typography>
             <AppMenu />
-            {/* <ToolbarAvatar /> */}
           </Toolbar>
         </AppBar>
         <Drawer
@@ -196,7 +192,7 @@ export default function Engineering({ AuthenticateSaga }) {
               <LinearIndeterminate />
             </Route>
             <Route path={match.path}>
-              <Landing />
+              <Dashboard />
             </Route>
           </Switch>
         </Container>

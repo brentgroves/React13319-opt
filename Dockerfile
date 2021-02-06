@@ -23,14 +23,16 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
 COPY package*.json ./
 
 RUN npm install
-# https://create-react-app.dev/docs/deployment/
-# RUN npm install -g serve
-RUN npm install --global http-server
+
 # Bundle app source
 COPY . .
 
 # build the React app.
 RUN npm run build
+
+# https://create-react-app.dev/docs/deployment/
+# RUN npm install -g serve
+RUN npm install --global http-server
 
 # CRA = port 3000 / serve = port 5000
 EXPOSE 3000 
