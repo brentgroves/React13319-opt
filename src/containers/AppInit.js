@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import DepartmentSwitchComponent from '../components/DepartmentSwitch';
+import AppInitComponent from '../components/AppInit';
 
 import * as actions from '../actions';
 
@@ -21,7 +21,7 @@ function mapStateToProps(state) {
   };
 }
 
-export const DepartmentSwitch = connect(
+export const AppInit = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(DepartmentSwitchComponent);
+)(AppInitComponent);

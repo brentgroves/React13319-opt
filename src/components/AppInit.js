@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import { Engineering } from '../containers/Engineering';
+import { App } from '../containers/App';
 import LinearIndeterminate from './LinearIndeterminate';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles } from '@material-ui/core/styles';
@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function DepartmentSwitch({
+export default function AppInit({
   SetAccount,
   SetGraph,
   SetProfile,
@@ -40,18 +40,7 @@ export default function DepartmentSwitch({
           SetProfile(response.positions[0].detail);
           const department = response.positions[0].detail.company.department;
           SetDepartment(department);
-          switch (department) {
-            case 'Production':
-              console.log(`Redirecting to Production`);
-              // Push('/tracker');
-              break;
-            case 'Engineering':
-              console.log(`Redirecting to Production`);
-              Push('/engineering');
-              break;
-            default:
-              break;
-          }
+          Push('')
         });
       });
   }, [account]);
@@ -63,11 +52,7 @@ export default function DepartmentSwitch({
   return (
     // Need This style for placement
     <div className={classes.root}>
-      <CssBaseline />
-      <Switch>
-        <Route exact path="/engineering" component={Engineering} />
-        <Route exact path="/transition" component={LinearIndeterminate} />
-      </Switch>
+      <App />
     </div>
   );
 }

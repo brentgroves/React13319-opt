@@ -1,42 +1,43 @@
-import React from 'react';
-import { Switch, Route, useRouteMatch } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import Container from '@material-ui/core/Container';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Divider from '@material-ui/core/Divider';
-import Drawer from '@material-ui/core/Drawer';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import { deepOrange, deepPurple } from '@material-ui/core/colors';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import clsx from 'clsx';
-import { SideMenu } from '../containers/SideMenu';
-import { Dashboard } from '../containers/Dashboard';
-import { AppMenu } from '../containers/AppMenu';
-import LinearIndeterminate from './LinearIndeterminate';
-
+import React from "react";
+import { Switch, Route, useRouteMatch, Redirect } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import Container from "@material-ui/core/Container";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Divider from "@material-ui/core/Divider";
+import Drawer from "@material-ui/core/Drawer";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import { deepOrange, deepPurple } from "@material-ui/core/colors";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import clsx from "clsx";
+import { SideMenu } from "../containers/SideMenu";
+import { Dashboard } from "../containers/Dashboard";
+import { AvatarMenu } from "../containers/AvatarMenu";
+import LinearIndeterminate from "./LinearIndeterminate";
+import { AppMenu } from "../containers/AppMenu";
+import ExtRedirect from "./ExtRedirect";
 const drawerWidth = 200;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    display: "flex",
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
   },
   toolbarIcon: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: '0 8px',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-end",
+    padding: "0 8px",
     ...theme.mixins.toolbar,
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
+    transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
@@ -44,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   appBarShift: {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
+    transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
@@ -53,36 +54,36 @@ const useStyles = makeStyles((theme) => ({
     marginRight: 36,
   },
   menuButtonHidden: {
-    display: 'none',
+    display: "none",
   },
   title: {
     flexGrow: 1,
   },
   drawerPaper: {
-    position: 'relative',
-    whiteSpace: 'nowrap',
+    position: "relative",
+    whiteSpace: "nowrap",
     width: drawerWidth,
-    transition: theme.transitions.create('width', {
+    transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
   drawerPaperClose: {
-    overflowX: 'hidden',
-    transition: theme.transitions.create('width', {
+    overflowX: "hidden",
+    transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
     width: theme.spacing(7),
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up("sm")]: {
       width: theme.spacing(9),
     },
   },
   appBarSpacer: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
-    height: '100vh',
-    overflow: 'auto',
+    height: "100vh",
+    overflow: "auto",
   },
   container: {
     paddingTop: theme.spacing(4),
@@ -90,9 +91,9 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(2),
-    display: 'flex',
-    overflow: 'auto',
-    flexDirection: 'column',
+    display: "flex",
+    overflow: "auto",
+    flexDirection: "column",
   },
   fixedHeight: {
     height: 240,
@@ -119,7 +120,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Engineering({ AuthenticateSaga }) {
+export default function App({ AuthenticateSaga }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -131,7 +132,7 @@ export default function Engineering({ AuthenticateSaga }) {
 
   const handleTest = (event, reason) => {
     console.log(`In handleTest`);
-    AuthenticateSaga('user@buschegroup.com', 'password', '/tracker', false);
+    AuthenticateSaga("user@buschegroup.com", "password", "/tracker", false);
   };
 
   let match = useRouteMatch();
@@ -151,7 +152,7 @@ export default function Engineering({ AuthenticateSaga }) {
               onClick={handleDrawerOpen}
               className={clsx(
                 classes.menuButton,
-                open && classes.menuButtonHidden,
+                open && classes.menuButtonHidden
               )}
             >
               <MenuIcon />
@@ -163,9 +164,10 @@ export default function Engineering({ AuthenticateSaga }) {
               noWrap
               className={classes.title}
             >
-              Tooling Tracker
+              Engineering Tooling Issues
             </Typography>
             <AppMenu />
+            <AvatarMenu />
           </Toolbar>
         </AppBar>
         <Drawer
@@ -191,9 +193,28 @@ export default function Engineering({ AuthenticateSaga }) {
             <Route path={`${match.path}/transition`}>
               <LinearIndeterminate />
             </Route>
-            <Route path={match.path}>
+            {/* <Route path={match.path}>
+              <Dashboard />
+            </Route> */}
+            <Route path="/prod" >
+              <ExtRedirect value='http://google.com/' />
+            </Route>
+            <Route path={'/'}>
               <Dashboard />
             </Route>
+            {/* <Route path={`${match.path}/privacy-policy`}>
+              <ExtRedirect />
+            </Route> */}
+            {/* <Route path={`${match.path}/test`}>
+              <ExtRedirect />
+            </Route> */}
+            {/* <Route
+              path="/test"
+              component={() => {
+                window.location.href = "http://google.com/";
+                return null;
+              }}
+            /> */}
           </Switch>
         </Container>
       </main>

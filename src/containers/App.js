@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import EngineeringComponent from '../components/Engineering';
+import AppComponent from '../components/App';
 
 import * as actions from '../actions';
 
@@ -20,7 +20,7 @@ function mapStateToProps(state) {
   };
 }
 
-export const Engineering = connect(
+export const App = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(EngineeringComponent);
+)(AppComponent);

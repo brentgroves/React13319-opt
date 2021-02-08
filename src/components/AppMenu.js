@@ -1,84 +1,29 @@
 import React, { useEffect } from "react";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import Avatar from "@material-ui/core/Avatar";
 
 import Badge from "@material-ui/core/Badge";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import AppsIcon from "@material-ui/icons/Apps";
 import IconButton from "@material-ui/core/IconButton";
+import * as AppId from "../constants/AppId";
+import * as AppSet from "../constants/AppSet";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import { indigo} from "@material-ui/core/colors";
+import * as common from "@bgroves/common";
+import { SetAccount } from "../actions";
+import * as errorType from "../constants/ErrorType";
+import * as errorSeverity from "../constants/ErrorSeverity";
 
-import Typography from "@material-ui/core/Typography";
-import Tooltip from "@material-ui/core/Tooltip";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
-import {AppMenuCard} from '../containers/AppMenuCard';
-
-const HtmlTooltip = withStyles((theme) => ({
-  tooltip: {
-    backgroundColor: "#f5f5f9",
-    color: "rgba(0, 0, 0, 0.87)",
-    maxWidth: 220,
-    fontSize: theme.typography.pxToRem(12),
-    border: "1px solid #dadde9",
-  },
-}))(Tooltip);
-
-const StyledMenu = withStyles({
-  paper: {
-    // border: '1px solid #d3d4d5',
-    border: '0px',
-  },
-
-})((props) => (
-  <Menu
-    elevation={0}
-    getContentAnchorEl={null}
-    anchorOrigin={{
-      vertical: "bottom",
-      horizontal: "center",
-    }}
-    transformOrigin={{
-      vertical: "top",
-      horizontal: "center",
-    }}
-    {...props}
-  />
-));
-
-const StyledMenuItem = withStyles((theme) => ({
-  gutters: {
-    paddingLeft: '0px',
-    paddingRight: '0px'
-  },      
-
-  root: {
-    "&:focus": {
-      backgroundColor: theme.palette.primary.main,
-      "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
-        color: theme.palette.common.white,
-      },
-      paddingTop: '0px',
-    },
-  },
-}))(MenuItem);
-const useStyles = makeStyles((theme) => ({
-  avatar: {
-    width: theme.spacing(4),
-    height: theme.spacing(4),
-    color: indigo[500],
-    backgroundColor: theme.palette.common.white,
-    //    color: theme.palette.getContrastText(indigo[500]),
-    //    backgroundColor: indigo[500],
-  },
-}));
-
-export default function AppMenu({ msalInstance, name, initials, companyName }) {
-  // common.log(`currentApp=${currentApp}`);
+export default function AppMenu({
+  isAuthenticated,
+  msalInstance,
+  Push,
+  currentApp,
+  SetCurrentApp,
+  SetAppError,
+  appSet,
+  Logout,
+}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const classes = useStyles();
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -87,49 +32,43 @@ export default function AppMenu({ msalInstance, name, initials, companyName }) {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const handleSignout = () => {
+  const handleBuyer = () => {
     setAnchorEl(null);
-    alert(`Signout`);
+    // alert(`Buyer App`);
+    Push('/prod');   
+    // window.location.href = 'http://google.com/';  
+    //    Push('/oee');
+  };
+  const handleProd = () => {
+    setAnchorEl(null);
+    alert(`Production App`);
+  };
+  const handleSuper = () => {
+    setAnchorEl(null);
+    alert(`Supervisor App`);
   };
 
   return (
     <React.Fragment>
       <CssBaseline />
-      <HtmlTooltip
-        title={
-          <React.Fragment>
-            <Typography variant="subtitle2" gutterBottom>
-              {name}
-            </Typography>
-            <Typography variant="body2" gutterBottom>
-              {companyName}
-            </Typography>
-          </React.Fragment>
-        }
-      >
-        <IconButton color="inherit" onClick={handleClick}>
-          <Badge badgeContent={0} color="secondary">
-            <Avatar className={classes.avatar}>{initials}</Avatar>
-          </Badge>
-          {/* <Badge badgeContent={0} color="secondary">
+
+      <IconButton color="inherit" onClick={handleClick}>
+        <Badge badgeContent={0} color="secondary">
           <AppsIcon />
-        </Badge> */}
-        </IconButton>
-      </HtmlTooltip>
-      <StyledMenu
-        id="customized-menu"
+        </Badge>
+      </IconButton>
+      <Menu
+        id="simple-menu"
         anchorEl={anchorEl}
         keepMounted
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <StyledMenuItem>
-          {/* <ListItemIcon> */}
-          <AppMenuCard/>
-
-          {/* </ListItemIcon> */}
-        </StyledMenuItem>
-      </StyledMenu>
+        <MenuItem onClick={handleBuyer}>Buyer</MenuItem>
+        <MenuItem onClick={handleProd}>Prod</MenuItem>
+        <MenuItem onClick={handleSuper}>Super</MenuItem>
+        <MenuItem onClick={handleSuper}>ToolSetter</MenuItem>
+      </Menu>
     </React.Fragment>
   );
 }

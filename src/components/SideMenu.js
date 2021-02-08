@@ -20,11 +20,11 @@ export default function SideMenu(params) {
     Push,
   } = params;
 
-  const handleIssuesPlant6 = () => {
+  const handleToolLife = () => {
     // Push('/Plant6Issues');
     alert(`Plant 6 Issues`);
   };
-  const handleIssuesPlant8 = () => {
+  const handleMachiningTimes = () => {
     // Push('/Plant8Issues');
     alert(`Plant 8 Issues`);
   };
@@ -40,24 +40,24 @@ export default function SideMenu(params) {
     <List>
       <ListSubheader>Issues</ListSubheader>
       <Divider />
-      <ListItem button onClick={handleIssuesPlant6}>
+      <ListItem button onClick={handleToolLife}>
         <ListItemIcon>
           <SpeedIcon />
         </ListItemIcon>
-        <ListItemText primary="Plant 6" />
+        <ListItemText primary="Tool Life" />
       </ListItem>
-      <ListItem button onClick={handleIssuesPlant8}>
+      <ListItem button onClick={handleMachiningTimes}>
         <ListItemIcon>
           <AirplanemodeActiveIcon />
         </ListItemIcon>
-        <ListItemText primary="Plant 8" />
+        <ListItemText primary="Machining Time" />
       </ListItem>
-      <ListItem button onClick={handleIssuesPlant8}>
+      {/* <ListItem button onClick={handleIssuesPlant8}>
         <ListItemIcon>
           <DirectionsRunIcon />
         </ListItemIcon>
         <ListItemText primary="Plant 9" />
-      </ListItem>
+      </ListItem> */}
       <Divider />
       <ListSubheader>Post</ListSubheader>
       <Divider />

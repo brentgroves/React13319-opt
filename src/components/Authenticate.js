@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { DepartmentSwitch } from '../containers/DepartmentSwitch';
+import { AppInit } from '../containers/AppInit';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
@@ -60,7 +60,7 @@ export default function Authenticate({
           errorComponent={ErrorComponent}
         >
           {/* <ProfileContent /> */}
-          <DepartmentSwitch />
+          <AppInit />
           {/* <h1>AppSwitch1</h1> */}
           <Snackbar
             anchorOrigin={{

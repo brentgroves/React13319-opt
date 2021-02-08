@@ -12,12 +12,13 @@ import reducers from "./reducers";
 import setupServices from "./services";
 import rootSaga from "./sagas";
 import { Authenticate } from './containers/Authenticate';
+import { App } from './containers/App';
+
 
 import "./index.css";
 
 // import { Authenticate } from './containers/Authenticate';
 
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 async function main() {
@@ -68,6 +69,7 @@ async function main() {
           {" "}
           {/* place ConnectedRouter under Provider */}
           <Authenticate />
+          {/* < App /> */}
         </ConnectedRouter>
       </Provider>
       ,
